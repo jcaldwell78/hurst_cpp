@@ -1,0 +1,33 @@
+
+This is the source code associated with the web page
+
+  http://www.bearcave.com/misl/misl_tech/wavelets/hurst/index.html
+
+There are the following sub-directories in this directory:
+
+hurst
+  This is the "main" directory, which contains the C++ source code for
+  the Hurst exponent estimation functions and related tests.  The
+  other directories all support the C++ code in this directory.
+
+stat
+
+  Statistics functions (linear regression, autocorrelation, standard
+  deviation, and probability density function calculation)
+
+data
+
+  Source code to read files downloaded from finance.yahoo.com, plus
+  sample market data files
+
+freq
+
+  Wavelet spectrum calculation C++ source code
+
+histo
+
+  Source code for calculating histograms
+
+include
+
+  Wavelet functions

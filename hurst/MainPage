@@ -1,0 +1,196 @@
+
+/*! \mainpage
+
+ <h3>
+ Hurst Exponent Calculation and Analysis Software
+ </h3>
+
+ <h4>
+ Overview
+ </h4>
+
+ <p>
+ This C++ software based supports estimation of the Hurst exponent.
+ For a discussion of the Hurst exponent, see the parent Web page
+ <a href="http://www.bearcave.com/misl/misl_tech/wavelets/hurst/index.html">
+ Estimating the Hurst Exponent Value</a>
+ </p>
+
+ <p>
+ The Hurst exponent is estimated using the classis rescaled range
+ (R/S) technique and by using wavelet spectral analysis.  The software
+ published here was used to develop the plots which are published on
+ the parent Web page.
+ </p>
+
+ <p>
+ Both the R/S and wavelet methods for calculating the rescaled 
+ range make use of linear regression.  Supporting software calculates
+ the linear regression slope (which is proportional to the Hurst
+ exponent) and the error of the regression.
+ </p>
+
+ <p>
+ The application that motivated me to study the Hurst exponent and the
+ methods used to estimate the Hurst exponent is the analysis of
+ financial time series.  Supporting software is included to read files
+ of market data for a given stock, downloaded from finance.yahoo.com.
+ Functions are also provided to calculate n-day return.
+ </p>
+
+ <p>
+ The Hurst exponent provides one way to measure long memory processes.
+ Another statistic is autocorrelation.  C++ software is also included
+ to estimate autocorrelation.
+ </p>
+
+ <p>
+ Software to test the Hurst exponent can be tested using synthetic
+ data sets that have a known hurst exponent value.  One of the 
+ simplest is a pure random walk, which should have a Hurst exponent
+ of 0.5.  The generation of random walks with long memory is a complex
+ topic by itself.  Some methods involve "spectral" techniques, using
+ either the Fourier or wavelet transforms.  The software I developed
+ for generating synthetics data sets was not successful.  I have
+ decided not to publish these incomplete experiments.
+ </p>
+
+ <h4>
+ Hurst Exponent Estimation Classes
+ </h4>
+
+ <p>
+ This code took months of nights and weekends to develop.  This
+ is not due to the size of the code for Hurst exponent estimation
+ but rather to the time it took to read and understand the literature
+ and develop the code.  The actual hurst estimation code is in
+ two classes:
+ </p>
+
+ <ul>
+ <li>
+ <p>
+ rescaled_range
+ </p>
+ <p>
+ This class implements a version of the classic rescaled range
+ (R/S) algorithm first developed by Mandelbrot.
+ </p>
+ </li>
+ <li>
+ <p>
+ hurst_spectrum
+ </p>
+ <p>
+ This class uses the wavelet transform to estimate the Hurst
+ exponent.
+ </p>
+ </li>
+ </ul>
+
+ <p>
+ Supporting code calculates the linear regression and regression 
+ error which is used in both the rescaled range and wavelet 
+ Hurst exponent estimators. 
+ </p>
+
+ <p>
+ To create the plots and tables published on my <a
+ href="http://www.bearcave.com/misl/misl_tech/wavelets/hurst/index.html">Hurst
+ exponent web page</a> I wrote additional software, including support
+ for statistical functions, reading stock market data and calculating
+ returns.  The wavelet spectrum estimation of the Hurst exponent uses
+ the wavelet softwae base, which I wrote for other web pages.  As a
+ result of all this supporting software, the Hurst exponent code is
+ buried in all these supporting files.
+ </p>
+
+ <h4>
+ Main Programs
+ </h4> 
+
+ <p>
+ Sadly it looks like my mathematics adventures may have to be put
+ aside in favor more practical software projects.  But if I were to
+ continue working on mathematics codes, I might start using a package
+ like Octave or R.  The code I wrote to test the Hurst estimation 
+ functions is sort of "hackish".  To run various tests I would
+ modify the code and recompile.  This code contains lines
+ which can be uncommented out to test the code with various
+ data sets.  This code is not terribly elegant, but I hope that
+ it demonstrates how to apply the functions.
+ </p>
+
+ <p>
+ I've included the C++ code I wrote to apply and test the Hurst
+ exponent estimation code, along with the supporting statistical
+ functions.  Makefiles are included for each main program.  These
+ Makefiles are written for Microsoft nmake.  I appologize.  I know
+ that Microsoft is evil.  UNIX (or Linux) - Live Free or Die.  It
+ should not be too difficult to convert these Makefiles for UNIX.
+ </p>
+
+ <p>
+ The classes developed to test the Hurst estimation code are:
+ </p>
+
+<ul>
+ <li>
+ <p>
+ hurst_stocks
+ </p>
+ </li>
+ <li>
+ <p>
+ wave_hurst
+ </p>
+ </li>
+</ul>
+
+<h4>
+Doxygen Documentation
+</h4>
+
+<p>
+To regenerate the documentation install <a
+href="http://www.doxygen.org">Doxygen</a>, modify the file
+<i>Makefile</i> and type <tt>nmake doxygen</tt>.
+</p>
+
+<h4>
+   Copyright and Use
+</h4>
+
+<p>
+   This copyright declaration and license applies to all of the
+   Hurst exponent estimation software published on www.bearcave.com.
+   It also applied to any supporting software (e.g., histogram 
+   calculation, statistics functions and wavelet functions).
+   (I did not feel like copying this copyright into every file).
+</p>
+
+<p>
+   You may use this source code without limitation and without
+   fee as long as you include:
+</p>
+
+<p>
+<i>
+     This software was written and is copyrighted by Ian Kaplan, Bear
+     Products International, <a
+     href="http://www.bearcave.com">www.bearcave.com</a>, 2003.
+</i>
+</p>
+
+<p>
+   This software is provided "as is", without any warranty or
+   claim as to its usefulness.  Anyone who uses this source code
+   uses it at their own risk.  Nor is any support provided by
+   Ian Kaplan and Bear Products International.
+<p>
+   Please send any bug fixes or suggested source changes to:
+<pre>
+     iank@bearcave.com
+</pre>
+
+*/

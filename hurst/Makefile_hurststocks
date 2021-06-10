@@ -1,0 +1,61 @@
+
+#
+# build the hurststocks(.exe) executable.
+#
+# The hurststocks executable tests the rescaled range against
+# daily returns.  By hacking the hurst_stocks.cpp file you 
+# can test against either a range of returns for a single
+# stock or against a single n-day return for a table
+# of stocks.
+#
+
+DEBUG     = -Zi
+BROWSE    = 
+
+CFLAGS    = $(BROWSE) $(DEBUG) -DWIN32 -GX -Tp
+OBJ       = obj
+EXE       = .exe
+
+DOXYPATH = e:\doxygen\bin
+
+SYSINC = "c:\Program Files\Microsoft Visual Studio\VC98\Include"
+
+INCLUDE = -I"include" -I"..\stat\include" -I"include" -I"..\data\include" -I$(SYSINC)
+
+STATOBJ = lregress.$(OBJ) 
+
+OBJECTS = $(STATOBJ) hurst_base.$(OBJ) rescaled_range.$(OBJ) hurst_stocks.$(OBJ) hurst_test_base.$(OBJ) hurststocks.$(OBJ) yahooTS.$(OBJ)
+
+ALL: hurststocks$(EXE)
+
+clean:
+	rm -f *.obj *.pdb *.sbr *.ilk *.exe 
+	rm -f include/*~
+	rm -f src/*~
+
+doxygen:
+	$(DOXYPATH)\doxygen doxygenDocConfig
+
+hurststocks$(EXE): $(OBJECTS)
+	$(CC) $(OBJECTS) $(DEBUG) -GX -o $*$(EXE)
+
+lregress.$(OBJ): ..\stat\src\$*.cpp ..\stat\include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) ..\stat\src\$*.cpp
+
+hurststocks.$(OBJ): *.cpp
+	$(CC) -c $(INCLUDE) $(CFLAGS) $*.cpp
+
+hurst_stocks.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+hurst_test_base.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+rescaled_range.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+hurst_base.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+yahooTS.$(OBJ): ..\data\src\$*.cpp ..\data\include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) ..\data\src\$*.cpp

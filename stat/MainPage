@@ -1,0 +1,47 @@
+
+/*! \mainpage
+
+ <h3>
+ Basic Statistics Functions
+ </h3>
+
+ <p>
+ This <a href="http://www.doxygen.org">Doxygen</a> generated C++
+ documentation was created for a set of basic statistics functions.
+ These basic statistics functions have been described in many books
+ and web pages.  My objective was not to restate this material yet
+ again, but to summarize some of the basic equations and provide C++
+ software that implements these functions.  My <a
+ href="http://www.bearcave.com/misl/misl_tech/wavelets/stat/index.html">Basic
+ Statistics</a> web page provides the equations and some references.
+ </p>
+
+<h4>
+   Copyright and Use
+</h4>
+
+<p>
+   You may use this source code without limitation and without
+   fee as long as you include:
+</p>
+
+<p>
+<i>
+     This software was written and is copyrighted by Ian Kaplan, Bear
+     Products International, <a
+     href="http://www.bearcave.com">www.bearcave.com</a>, 2003.
+</i>
+</p>
+
+<p>
+   This software is provided "as is", without any warranty or
+   claim as to its usefulness.  Anyone who uses this source code
+   uses it at their own risk.  Nor is any support provided by
+   Ian Kaplan and Bear Products International.
+<p>
+   Please send any bug fixes or suggested source changes to:
+<pre>
+     iank@bearcave.com
+</pre>
+
+*/

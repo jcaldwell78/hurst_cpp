@@ -1,0 +1,60 @@
+
+DEBUG     = -Zi
+BROWSE    = 
+
+CFLAGS    = $(BROWSE) $(DEBUG) -DWIN32 -GX -Tp
+OBJ       = obj
+EXE       = .exe
+
+DOXYPATH = e:\doxygen\bin
+
+SYSINC = "c:\Program Files\Microsoft Visual Studio\VC98\Include"
+
+INCLUDE = -I"include" -I"..\include" -I"..\freq\include" -I"..\stat\include" -I"..\data\include" -I$(SYSINC)
+
+
+STATOBJ = lregress.$(OBJ) 
+WAVEOBJ = spectrum.$(OBJ) hurst_base.$(OBJ) hurst_spectrum.$(OBJ) 
+RSOBJ = rescaled_range.$(OBJ) 
+
+OBJECTS = $(STATOBJ) $(WAVEOBJ) $(RSOBJ) wave_hurst.$(OBJ) hurst_test_base.$(OBJ) hurstwave.$(OBJ) yahooTS.$(OBJ)
+
+ALL: hurstwave$(EXE)
+
+clean:
+	rm -f *.obj *.pdb *.sbr *.ilk *.exe 
+	rm -f include/*~
+	rm -f src/*~
+
+doxygen:
+	$(DOXYPATH)\doxygen doxygenDocConfig
+
+hurstwave$(EXE): $(OBJECTS)
+	$(CC) $(OBJECTS) $(DEBUG) -GX -o $*$(EXE)
+
+lregress.$(OBJ): ..\stat\src\$*.cpp ..\stat\include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) ..\stat\src\$*.cpp
+
+spectrum.$(OBJ): ..\freq\src\$*.cpp ..\freq\include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) ..\freq\src\$*.cpp
+
+hurst_spectrum.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+hurst_base.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+hurstwave.$(OBJ): *.cpp
+	$(CC) -c $(INCLUDE) $(CFLAGS) $*.cpp
+
+wave_hurst.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+hurst_test_base.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+rescaled_range.$(OBJ): src\$*.cpp include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) src\$*.cpp
+
+yahooTS.$(OBJ): ..\data\src\$*.cpp ..\data\include\$*.h
+	$(CC) -c $(INCLUDE) $(CFLAGS) ..\data\src\$*.cpp
